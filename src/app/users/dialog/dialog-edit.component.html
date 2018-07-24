@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Edit Name</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+      <input matInput type="text" name="name" placeholder="Name" [value]="data.name" #editedName required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" (click)="onButtonClicked(editedName.value)">Okay</button>
+</div>
