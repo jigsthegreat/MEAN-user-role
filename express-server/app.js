@@ -6,6 +6,8 @@ require('./models/Role');
 
 const roleRoutes = require('./routes/roles');
 const userRoutes = require('./routes/users');
+const roomRoutes = require('./routes/rooms');
+const reservationRoutes = require('./routes/reservations');
 // const commentsRoutes = require('./routes/comments');
 
 const app = express();
@@ -41,6 +43,8 @@ app.use((req, res, next) => {
 
 app.use('/api/roles', roleRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/rooms', roomRoutes);
+app.use('/api/reservations', reservationRoutes);
 // app.use('/api/posts/comments', commentsRoutes);
 
 module.exports = app;
