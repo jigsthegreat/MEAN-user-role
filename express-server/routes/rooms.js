@@ -4,7 +4,9 @@ const RoomController = require('../controllers/rooms');
 
 const router = express.Router();
 
-router.get('', RoomController.getRooms);
+router.get('', RoomController.getAvailableRooms);
+
+router.get('/all', RoomController.getAllRooms);
 
 router.post('', RoomController.createRoom);
 

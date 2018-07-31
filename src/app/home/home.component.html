@@ -53,7 +53,7 @@
       <mat-icon mat-list-icon>meeting_room</mat-icon>
       <h3 mat-line>{{room.name}}</h3>
       <p mat-line class="demo-2"> {{room.description}} </p>
-      <button mat-button color="primary" class="float-right">Book</button>
+      <button mat-button color="primary" class="float-right" (click)="onBook(room)">Book</button>
       <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
     </mat-list-item>
     <!-- <mat-divider></mat-divider>

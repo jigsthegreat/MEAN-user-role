@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { FormControl, NgForm, FormGroup, FormBuilder, Validators } from '../../../node_modules/@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from './booking.service';
 import { Room } from '../rooms/room.model';
+import { Reservation } from '../reservations/reservation.model';
 
 @Component({
   selector: 'app-home',
@@ -58,9 +59,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.availableRooms = rooms.availableRooms;
       console.log(this.availableRooms);
     });
-    // console.log(this.form.get('roomName').value);
-    // console.log(this.form.get('startDateTime'));
-    // console.log(this.form.get('endDateTime').value.valueOf());
   }
 
   chooseStartDateTime(event) {
@@ -69,6 +67,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getRoomName(name) {
     this.selectedRoomName = name;
+  }
+
+  onBook(room: any) {
+    const reservation: Reservation = {
+      room: room._id,
+      requestedBy: '5b39d2aa1d27ae16dc92f38f',
+      startDateTime: this.form.get('startDateTime').value,
+      endDateTime: this.form.get('endDateTime').value
+    };
+    console.log('OOOYY');
+    this.bookingService.createReservation(reservation);
   }
 
   ngOnDestroy() {}

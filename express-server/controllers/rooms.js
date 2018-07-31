@@ -1,7 +1,20 @@
 const Room = require('../models/Room');
 const Reservation = require('../models/Reservation');
 
-exports.getRooms = (req, res, next) => {
+exports.getAllRooms = (req, res, next) => {
+  Room.find()
+    .then(rooms => {
+      res.status(200).json(rooms);
+    })
+    .catch(err => {
+      return res.status(500).json({
+        message: 'Fetching rooms failed!'
+      });
+    });
+
+};
+
+exports.getAvailableRooms = (req, res, next) => {
   if (req.query.sdt) {
     const roomName = req.query.q ? req.query.q : '';
     // Current algo:
@@ -47,7 +60,9 @@ exports.getRooms = (req, res, next) => {
   }
   // default (no query strings)
   else {
-    Room.find()
+    Room.find({
+      availability: true
+    })
       .then(rooms => {
         res.status(200).json(rooms);
       })
