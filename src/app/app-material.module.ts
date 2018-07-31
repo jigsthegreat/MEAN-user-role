@@ -15,8 +15,14 @@ import {
   MatDialogModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatListModule
 } from '@angular/material';
+
+import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 
 @NgModule({
   exports: [
@@ -35,7 +41,12 @@ import {
     MatDialogModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatDatetimepickerModule,
+    MatMomentDatetimeModule,
+    MatListModule
   ]
 })
 

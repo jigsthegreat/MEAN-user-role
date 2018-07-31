@@ -15,6 +15,7 @@ exports.getReservations = (req, res, next) => {
 }
 
 exports.createReservation = (req, res, next) => {
+  //TODO: check ulit if no conflict ang time
   const reservation = new Reservation({
     room: req.body.room,
     requestedBy: req.body.requestedBy,

@@ -4,16 +4,14 @@ const Reservation = require('../models/Reservation');
 exports.getRooms = (req, res, next) => {
   if (req.query.sdt) {
     const roomName = req.query.q ? req.query.q : '';
-    // Room.find({
-    //   availability: true,
-    //   name: { $regex: roomName, $options: 'i' }
-    // }).then(rooms => {
-    // req.query = roomName, startDateTime, endDateTime
-    // (StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
-    // get all? reservations
+    // Current algo:
+    // 1st: find reservations from the given Start and End Time (to find collision)
+    // 2nd: Get the rooms used
+    // 3rd: Exclude them on the final search for rooms
     Reservation.find(
       {
         // db.inventory.find( { tags: ["red", "blank"] } ) ::::NOTE::::
+        // add open/close reservation?
         approvalStatus: 2,
         startDateTime: { $lt: req.query.edt },
         endDateTime: { $gt: req.query.sdt }
@@ -46,7 +44,6 @@ exports.getRooms = (req, res, next) => {
       .catch(errors => {
         console.log(errors);
       });
-    // });
   }
   // default (no query strings)
   else {

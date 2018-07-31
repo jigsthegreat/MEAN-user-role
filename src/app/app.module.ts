@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -14,6 +14,8 @@ import { AppMaterialModule } from './app-material.module';
 import { DialogEditComponent } from './users/dialog/dialog-edit.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { JwtModule } from '@auth0/angular-jwt';
+// import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
+// import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
 
 @NgModule({
   declarations: [
@@ -27,11 +29,14 @@ import { JwtModule } from '@auth0/angular-jwt';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
     AppMaterialModule,
-    JwtModule
+    JwtModule,
+    // MatDatetimepickerModule,
+    // MatMomentDatetimeModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}

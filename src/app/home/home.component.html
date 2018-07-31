@@ -1,1 +1,81 @@
-<p class="info-text mat-body-1">Home</p>
+<form [formGroup]="form" (submit)="onSearch()" class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      type="text"
+      placeholder="Pick a room"
+      aria-label="Room"
+      matInput [formControl]="myControl"
+      [matAutocomplete]="auto"
+      formControlName="roomName">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" (onSelectionChange)="getRoomName(option.name)">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-placeholder>Start DateTime</mat-placeholder>
+    <mat-datetimepicker-toggle [for]="datetimePickerStart" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #datetimePickerStart type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+    <input
+      matInput
+      (dateInput)="chooseStartDateTime($event)"
+      formControlName="startDateTime"
+      [matDatetimepicker]="datetimePickerStart"
+      required
+      autocomplete="false">
+    <mat-error *ngIf="form.get('startDateTime').invalid">Please enter the start date time</mat-error>
+  </mat-form-field>
+  -
+  <!-- End Date -->
+  <mat-form-field>
+    <mat-placeholder>End DateTime</mat-placeholder>
+    <mat-datetimepicker-toggle [for]="datetimePickerEnd" matSuffix></mat-datetimepicker-toggle>
+    <mat-datetimepicker #datetimePickerEnd type="datetime" openOnFocus="true" timeInterval="5"></mat-datetimepicker>
+    <input
+      matInput
+      [min]="minEndDate"
+      formControlName="endDateTime"
+      [matDatetimepicker]="datetimePickerEnd"
+      required
+      autocomplete="false">
+    <mat-error *ngIf="form.get('endDateTime').invalid">Please enter the end date time</mat-error>
+  </mat-form-field>
+
+  <button class="example-full-width" mat-raised-button color="primary" type="submit">Search</button>
+</form>
+
+<mat-card>
+  <mat-list>
+    <h2 mat-subheader>Rooms available</h2>
+    <mat-list-item *ngFor="let room of availableRooms; last as last">
+      <mat-icon mat-list-icon>meeting_room</mat-icon>
+      <h3 mat-line>{{room.name}}</h3>
+      <p mat-line class="demo-2"> {{room.description}} </p>
+      <button mat-button color="primary" class="float-right">Book</button>
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+    </mat-list-item>
+    <!-- <mat-divider></mat-divider>
+    <h3 mat-subheader>Notes</h3>
+    <mat-list-item *ngFor="let note of notes">
+      <mat-icon mat-list-icon>note</mat-icon>
+      <h4 mat-line>{{note.name}}</h4>
+      <p mat-line class="demo-2"> {{note.updated}} </p>
+    </mat-list-item> -->
+  </mat-list>
+  <!-- <mat-accordion>
+    <mat-expansion-panel *ngFor="let room of availableRooms; last as last">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{room.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{room.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <p>{{room.capacity}}</p>
+    </mat-expansion-panel>
+  </mat-accordion> -->
+</mat-card>
