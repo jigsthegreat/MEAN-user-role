@@ -14,8 +14,8 @@ import { AppMaterialModule } from './app-material.module';
 import { DialogEditComponent } from './users/dialog/dialog-edit.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { JwtModule } from '@auth0/angular-jwt';
-// import { MatDatetimepickerModule } from '@mat-datetimepicker/core';
-// import { MatMomentDatetimeModule } from '@mat-datetimepicker/moment';
+import { RoomComponent } from './rooms/room.component';
+import { ReservationComponent } from './reservations/reservation.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     UserListComponent,
     HomeComponent,
     DialogEditComponent,
+    RoomComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +36,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     FlexLayoutModule,
     HttpClientModule,
     AppMaterialModule,
-    JwtModule,
-    // MatDatetimepickerModule,
-    // MatMomentDatetimeModule
+    JwtModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}

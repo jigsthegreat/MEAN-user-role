@@ -15,7 +15,7 @@ const app = express();
 // dzWN4SPNnX2gqzfh
 // mongodb+srv://max:<process.env.MONGO_ATLAS_PW>@cluster0-nafr7.mongodb.net/node-angular
 mongoose
-  .connect('mongodb://localhost:27017/user-role')
+  .connect('mongodb://localhost:27017/user-role', { useNewUrlParser: true })
   // .connect('mongodb+srv://max:' + process.env.MONGO_ATLAS_PW + '@cluster0-nafr7.mongodb.net/node-angular')
   .then(() => {
     console.log('Connected to database!');

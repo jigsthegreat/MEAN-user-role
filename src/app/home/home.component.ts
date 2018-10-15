@@ -4,6 +4,7 @@ import {map, startWith} from 'rxjs/operators';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from './booking.service';
 import { Room } from '../rooms/room.model';
+import { User } from '../users/user.model';
 import { Reservation } from '../reservations/reservation.model';
 
 @Component({
@@ -70,9 +71,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onBook(room: any) {
+    // const user: User = {
+
+    // }
     const reservation: Reservation = {
       room: room._id,
       requestedBy: '5b39d2aa1d27ae16dc92f38f',
+      // requestedBy:
       startDateTime: this.form.get('startDateTime').value,
       endDateTime: this.form.get('endDateTime').value
     };
